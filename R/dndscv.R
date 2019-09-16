@@ -150,6 +150,9 @@ dndscv = function(mutations, gene_list = NULL, refdb = "hg19", sm = "192r_3w", k
     mutations$gene = sapply(RefCDS,function(x) x$gene_name)[mutations$geneind]
     if (uniquemuts == T){
         mutations = unique(mutations)
+    } else {
+        nduplicated <- sum(duplicated(mutations))
+        message(paste0(nduplicated, " mutations are duplicates, if you're expecting 0 duplicates set uniquemuts == T"))
     }
 
     # Optional: Excluding samples exceeding the limit of mutations/sample [see Default parameters]
